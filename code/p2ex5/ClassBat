@@ -1,0 +1,70 @@
+class Bat {
+  
+
+  float lox;
+  float loy;
+  //int loz;
+  color rc;
+  float acc;
+  String driver;
+  float flipper;
+  float sc;
+  
+  
+  // constuctor // it's like setup
+  Bat (String dr, float sp)  {
+    lox = int(random(0,1200));
+    loy = int(random(0,1200));
+    //rc = color(random(255),random(255),random(255));
+    rc = color(random(0,100));
+    acc = sp;
+    driver = dr;
+    flipper = random(-50,50);
+    sc = random(100);
+  }
+  
+  
+ 
+  
+  
+  void move() {
+    lox+=acc;
+    if (lox > width) {
+      lox = 0;
+    }
+    flipper+=.7;
+  }
+  
+  void wiggle(float sa) {
+   
+    if (loy > height || loy < 0 ) {
+      loy = 0;
+    }
+     loy+=random(-sa,sa);
+  }
+  
+  
+  void update() {
+    
+    pushMatrix();
+    
+    rotate(radians(flipper));
+   // scale(sc);
+    translate(lox,loy);
+    
+    fill(rc);
+    //rect(0,0,70,40,12);
+    rect(0, 0, 10, 20, 20);
+    rect(7, 15, 10, 10, 10);
+    //triangle(0,0,10,0,10,5);
+    
+    rect(0, 0, 10, 30, 20);
+    fill(0);
+    text(driver,10,20);
+    
+    popMatrix();
+    
+  }
+  
+  
+}

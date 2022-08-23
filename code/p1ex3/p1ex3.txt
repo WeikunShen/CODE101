@@ -1,0 +1,369 @@
+Eye e1, e2; //e3;
+int value=0;
+PImage b;
+PImage b2;
+PImage b3;
+PImage b1;
+
+void setup() {
+  
+  size(700, 700);
+  background(255, 247, 220);
+  ellipseMode(CENTER);
+  rectMode(CENTER);
+  noStroke();
+  b = loadImage("DA.jpg");
+  b1 = loadImage("comic1.jpg");
+  b2 = loadImage("comic2.jpg");
+  b3 = loadImage("comic3.jpg");
+  
+  
+  e1 = new Eye( 334, 315, 33);
+  e2 = new Eye( 367, 315, 33);  
+ // e3 = new Eye( 420, 230, 220);
+  
+  fill(200);
+}
+
+ void draw() {
+   
+   
+   saveFrame();
+   
+   
+  pair();
+  
+  //rect(0, 0, width, height);
+  StevesRanDots();
+  noFill();
+  push();
+  translate(mouseX, height/2);
+  rotate(radians(mouseX));
+  Dorayaki();
+  cat1();
+  pop();
+  
+}
+
+
+
+
+
+
+
+
+
+
+void StevesRanDots() {
+  tint(255, 50);
+  float r = random(2);
+  float rloop = random(20);
+  if(mousePressed){
+  for (int i = 1; i < r; i++) {
+    fill(r+150, rloop+10, random(150));
+  
+    //ellipse(random(width), random(height), r+300, r+300);
+    image(b1, random(width), random(height), r+200, r+300);
+    image(b2, random(width), random(height), r+200, r+300);
+    image(b3, random(width), random(height), r+200, r+300);
+    
+    
+  }
+  }else{
+    image(b, 0, 0, width, height);
+    
+    
+   }
+  }
+  
+
+
+
+ void pair() {
+  cat1();
+  Dorayaki();
+ 
+ 
+
+  
+ e1.update(mouseX, mouseY);
+  e2.update(mouseX, mouseY);
+ // e3.update(mouseX, mouseY);
+
+  e1.display();
+  e2.display();
+ // e3.display();
+ 
+}
+
+
+class Eye {
+  int x, y;
+  int size;
+  float angle = 0.0;
+  
+  Eye(int tx, int ty, int ts) {
+    x = tx;
+    y = ty;
+    size = ts;
+ }
+
+  void update(int mx, int my) {
+    angle = atan2(my-y, mx-x);
+  }
+  
+  void display() {
+    strokeWeight(2);
+    stroke(0);
+    pushMatrix();
+    translate(x, y);
+    fill(255);
+    ellipse(0, 0, size, size+size/3);
+    rotate(angle);
+    fill(0,0,0);
+    ellipse(size/4, 0, size/5, size/3);
+    fill(255);
+    ellipse(size/4, 0, size/6, size/4);
+    popMatrix();
+  }
+}
+
+
+
+
+
+void Dorayaki() {
+  noStroke();
+    int k5 = color(218, 110, 0);
+    int k6 = color(255, 214, 0);
+
+  bread(70,0,k5);
+  layer1(70,0,k6);
+  layer2(70, 0, k6);
+
+  
+}
+
+ void bread(int xpos, int ypos, int c ) {
+  strokeWeight(2);
+ stroke(0);
+   fill(c);
+   //rect(width/2+xpos,height/2+100,100,125,10); 
+   ellipse(mouseX, mouseY,100,60);
+}
+
+void layer1(int xpos, int ypos, int c ) {
+  strokeWeight(2);
+ stroke(0);
+   fill(c);
+   //rect(width/2+xpos,height/2+100,100,125,10); 
+   rect(mouseX, mouseY-5,120,10,10);
+}
+
+void layer2(int xpos, int ypos, int c ) {
+  strokeWeight(2);
+ stroke(0);
+   fill(c);
+   //rect(width/2+xpos,height/2+100,100,125,10); 
+   rect(mouseX, mouseY+5,120,10,10);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ void cat1() {
+  noStroke();
+  int k = color(0, 180, 255);
+    int k2 = color(255, 255, 255);
+      int k3 = color(242, 40, 40);
+        int k4 = color(255, 233, 0);
+       
+  foot(70,0,k2);
+  arm(110,10,k); 
+  body(70,0,k);
+  leg(80,0,k);
+  head(70,0,1,k); 
+  belly(70, 0,k2);
+  face(70,0,k2);
+  nose(70, 0, k3);
+  belt(70,0,k3);
+  hand(70, 0, k2);
+  bell(70, 0, k4);
+  mouth(70, 0, k2);
+ // eye(70, 0, k2);
+ // eyeball(70, 0, k2);
+  
+
+
+}
+
+
+
+
+
+
+
+
+
+ void body(int xpos, int ypos, int c ) {
+  strokeWeight(2);
+ stroke(0);
+   fill(c);
+   //rect(width/2+xpos,height/2+100,100,125,10); 
+   rect(width/3 +xpos+47,height/2+100 +ypos,100,125);
+}
+
+ void head(int xpos, int ypos, int ear, int c) {
+  fill(c);
+  strokeWeight(2);
+ stroke(0);
+
+ if (ear == 0) {
+  rect(width/2+xpos,height/2 -150 +ypos ,80,10,7);
+  //triangle(width/2+20, height/2
+  rect(width/2+xpos,height/2 -180 +ypos ,40,50,7);
+  } 
+ //ellipse(width/2+xpos,height/2 +20 +ypos ,180,160);
+ //ellipse(width/2+xpos,height/2+20+ypos , 160, 150);
+ ellipse(width/2,height/2 +20 +ypos ,180,170);
+
+}
+
+ void face(int xpos, int ypos, int c){
+   strokeWeight(2);
+ stroke(0);
+  fill(c);
+  ellipse(width/2 +xpos-70,height/2 +35 +ypos ,145,130);
+ 
+}
+
+ void nose(int xpos, int ypos, int c){
+  fill(c);
+  ellipse(width/2 +xpos-70,height/2+ypos-12 ,16,16);
+}
+
+//void eye(int xpos, int ypos, int c){
+  
+//strokeWeight(2);
+// stroke(0);
+  //fill(c);
+ // ellipse(width/2 +xpos-85,height/3 +ypos+80 ,35,48);
+// ellipse(width/2 +xpos-50, height/3 +ypos+80, 35, 48);
+//}
+
+
+ //void eyeball(int xpos, int ypos, int c){
+   
+ // if(!mousePressed){
+ 
+ //strokeWeight(2);
+ //stroke(0);
+ // fill(c);
+ // ellipse(width/2 +xpos-73,height/3 +ypos+80 ,5,7);
+  //ellipse(width/2 +xpos-63, height/3 +ypos+80, 5, 7);
+  
+  
+   //}
+  
+//}
+
+ void belly(int xpos, int ypos, int c){
+  strokeWeight(2);
+ stroke(0);
+  fill(c);
+  ellipse(width/2 +xpos-70,height/2 +110 +ypos ,72,65);
+}
+
+ void belt(int xpos, int ypos, int c){
+  strokeWeight(2);
+ stroke(0);
+  fill(c);
+  rect(width/2 +xpos-70,height/2 +95 +ypos ,110,10, 20);
+}
+  
+ void bell(int xpos, int ypos, int c){
+   strokeWeight(2);
+   stroke(0);
+  fill(c);
+  ellipse(width/2 +xpos-70,height/2 +100 +ypos ,20,20);
+}
+  
+ void foot(int xpos,int ypos, int c) {
+   strokeWeight(2);
+ stroke(0);
+  fill(c);
+  ellipse(width/2 +xpos-100,height/2+170 + ypos,50,20); 
+  ellipse(width/2 +xpos-40,height/2+170 + ypos,50,20); 
+} 
+
+ void leg(int xpos,int ypos, int c) {
+  noStroke();
+  fill(c);
+  rect(width/2 +xpos-107,height/2+165 + ypos,45,10); 
+  rect(width/2 +xpos-53,height/2+165 + ypos,45,10); 
+}
+
+
+ void arm(int xpos,int ypos, int c) {
+  fill(c);
+  //rect(width/2+xpos,height/2-30 + ypos,15,80,5); 
+  quad(320, 445, 320, 475, 265, 479, 260, 464);
+  quad(380, 445, 380, 475, 435, 479, 440, 464);
+
+}
+
+ void hand(int xpos,int ypos, int c) {
+  fill(c);
+  //rect(width/2+xpos,height/2-30 + ypos,15,80,5); 
+  ellipse(width/4+xpos+20,height/2+120 + ypos,28,28);
+  ellipse(width/2+width/4-xpos-20,height/2+120 + ypos,28,28);
+  strokeWeight(1);
+  stroke(225);
+   ellipse(width/2 +xpos-68,height/2+ypos-14 ,8,8);
+}
+
+ void mouth(int xpos, int ypos, int c){
+   fill(c);
+    curve(width/2-width/6, height/2-180, width/2-width/12, height/2+height/24,
+   width/2+width/12,  height/2+height/24, width/2+width/6, height/2-180);
+   line(width/2, height/2-4, width/2, height/2+height/13);
+   line(width/2-35, height/2, width/2-65, height/2-15);
+   line(width/2+35, height/2, width/2+65, height/2-15);
+   line(width/2-40, height/2+20, width/2-75, height/2+20);
+   line(width/2+40, height/2+20, width/2+75, height/2+20);
+   line(width/2-37, height/2+7, width/2-70, height/2+2);
+   line(width/2+37, height/2+7, width/2+70, height/2+2);
+     curve(width/2-15, height/2+125, width/2-30, height/2+115, width/2+30, height/2+115, width/2+15, height/2+125);
+  
+   //curve(width/2-width/6, height/2+value, width/2-width/12, height/2-height/6-value/4,
+  // width/2+width/12,  height/2-height/6-value/4, width/2+width/6, height/2+value);
+ }
+
+
+
+
+
+
+
+
+
+
+
+void mouseMoved() {
+  value = value + 1;
+  if (value > 255) {
+    value = 0;
+  }
+}

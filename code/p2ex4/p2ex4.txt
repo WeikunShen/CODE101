@@ -1,0 +1,101 @@
+int value=0;
+int count = 20;
+float[] posX = new float[count]; 
+float[] posY = new float[count];
+float[] speedX = new float[count];
+float[] speedY = new float[count];
+float[] sizeW = new float[count];
+float[] sizeH = new float[count];
+int[] colors = new int[count];
+float[] speedXlist = {0.0, 0.0,0.0};
+float[] speedYlist = {0.0, 0.0,0.0};
+float[] blocXlist = {0.0, 0.0,0.0}; 
+float[] blocYlist = {0.0, 0.0,0.0};
+int [] colorR = new int[count];
+int [] colorG = new int[count];
+int [] colorB = new int[count];
+
+void setup() { 
+  size(600, 600);
+  
+  speedXlist[0] = random(-10, 10);
+  speedYlist[0] = random(-10, 10);
+  blocXlist[0] = width/2; 
+  blocYlist[0] = height/2; 
+  
+  for (int i=0; i < posX.length; i++) { 
+    posX[i] = width/2; 
+    posY[i] = height/2; 
+    speedX[i] = random(-5, 5); 
+    speedY[i] = random(-5, 5); 
+    sizeW[i] = random(value, value+25); 
+    sizeH[i] = random(value, value+25); 
+    //sizeW[i] = random(20, 25); 
+    //sizeH[i] = random(20, 100); 
+    colors[i] = int(random(0, 255));
+    //colorR[i] = int(random(0, value));
+    //colorG[i] = int(random(0, value));
+    //colorB[i] = int(random(0, value));
+    colorR[i] = int(random(0, 255));
+    colorG[i] = int(random(0, 255));
+    colorB[i] = int(random(0, 255));
+  }
+} 
+void draw() { 
+  //background(0, 0, 0);
+  
+  //saveFrame();
+
+  
+  fill(255, 10);
+  rect(0, 0, width, height);
+  fill(255,10); 
+  rect(40, 40, width-80, height-80); 
+  noStroke();
+  for (int i = 0; i < posX.length; i++) { 
+    //update all positions 
+    posX[i] += speedX[i]; 
+    posY[i] += speedY[i]; 
+    //draw all balls 
+    //fill(181, 255, 232); 
+    //fill(colors[i]); 
+    fill(random(0,255), random(0,255), random(0, 255));
+    ellipse(posX[i], posY[i], 10, 10); 
+    //check boundaries for all balls 
+    
+    
+  if ((blocXlist[0]< 0)||(blocXlist[0] > width)) { 
+    speedXlist[0] = -speedXlist[0];
+  } 
+
+
+  if ((blocYlist[0]< 0) || (blocYlist[0] > height)) {
+    speedYlist[0] = -speedYlist[0];
+  } 
+    
+    
+  blocXlist[0] += speedXlist[0];
+  blocYlist[0] += speedYlist[0]; 
+  
+ fill(colorR[i], value, colorB[i]); 
+ //fill(random(0,value), random(0, value), random(0, value));
+  ellipse(blocXlist[0], blocYlist[0], sizeW[i], sizeH[i]);
+  fill(0, 232, 255); 
+    
+
+    if (posX[i] < 40+sizeW[i]/2 || posX[i] > (width-40)-sizeW[i]/2 ) { 
+      speedX[i] = -speedX[i];
+    } 
+    if (posY[i] < 40+sizeW[i]/2 || posY[i] > (height-40)-sizeW[i]/2) { 
+      speedY[i] = -speedY[i];
+    }
+  }
+} 
+
+
+void mouseMoved() {
+  value = value + 1;
+  if (value > 255) {
+    value = 0;
+  }
+}

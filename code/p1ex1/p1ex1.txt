@@ -1,0 +1,100 @@
+
+int counter = 0;
+
+void setup() {
+size(500, 500);
+background(0);
+
+  frameRate(50);
+}
+
+void draw() {
+
+
+noStroke();
+
+float rand = 0;
+String gridName = "Gary";
+
+
+  for (int i = 0; i < 500; i += 80) {
+    for (int j = 0; j < 500; j += 80) {
+      rand = random(255);
+      fill(rand);
+      rect( i, j, 50, 50 );
+      println(gridName + ", now has a fill value of " + rand);
+    }
+  }
+
+ 
+
+smooth();
+  Float a = 0.0;
+  float inc = TWO_PI/10.0;
+  println(" The inc = " + inc);
+  //stroke(255, 0, 0);
+  strokeWeight(5);
+  stroke(255);
+  for (int i=40; i<500; i+=30) {
+    fill(0, 0, 0, 50);
+    //line(i, 50, i, 50+sin(a)*40.0);
+    ellipse(i, 40, i, 50+sin(a)*5.0);
+    ellipse(50+sin(a)*5.0, 40, i, i);
+    ellipse(40, i, 50+sin(a)*5.0, i);
+    println(" The angle = " + a + "The sin = " + sin(a));
+    a = a + inc;
+  }
+
+strokeWeight(5);
+stroke(255);
+  for (int i = 40; i < 500; i += 30) {
+    fill(0, 0, 0, 50);
+    circle(i, i, i);
+  }
+
+ strokeWeight(2);
+ stroke(0);
+   for (int i = 40; i < 500; i += 60) {
+    fill(0, 0, 0, 0);
+    circle(i, i, i);
+  }
+ 
+
+ 
+noStroke();
+
+for (int i=0; i < height; i+=20) {
+  fill(0, 230, 255, 100);
+  rect(0, i, width, 10);
+  fill(255, 0, 0, 100);
+  rect(i, 0, 10, height);
+  println(i);
+}
+
+
+
+
+
+      
+
+  //fill(255,255,0,120);
+  fill(0, 230, 255, 120);
+  //rect(0, counter, width - random(50), 10);
+  //ellipse(40, counter, width - random(0), 40);
+  ellipse(40, counter, 40, 40);
+  ellipse(460, counter, 40, 40);
+  //fill(200,20,200,120);
+  fill(255, 0, 0, 57);
+  //rect(counter, 0, 10, height - random(50));
+  //ellipse(counter, 40, 40, width - random(0));
+  ellipse(counter, 40, 40, 40);
+  ellipse(counter, 460, 40, 40);
+
+if (counter > height) {
+  background(0);
+  counter = 0;
+} else {
+  counter+=20;
+}
+
+}

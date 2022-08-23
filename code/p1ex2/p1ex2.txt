@@ -1,0 +1,178 @@
+int gSize = 350;
+int value= 0;
+PImage b;
+PImage b2;
+PImage b3;
+PImage b4;
+PImage b5;
+PImage b6;
+PImage b7;
+PImage b8;
+PImage b9;
+PImage b10;
+int tCounter = 0;
+PFont f; 
+
+void setup() { 
+  size(700, 700); 
+  background(0);
+  smooth();
+  noStroke();  
+  // Load in 2 different images and name them below
+  // Images must be in the "data" directory to load correctly
+  b = loadImage("image1.jpg"); 
+  b2 = loadImage("image2.jpg");
+  b3 = loadImage("image4.jpg");
+  b4 = loadImage("image5.jpg");
+  b5 = loadImage("image6.jpg");
+  b6 = loadImage("image7.jpg");
+  b7 = loadImage("image8.jpg");
+  b8 = loadImage("image9.jpg");
+  b9 = loadImage("image10.jpg");
+  b10 = loadImage("image11.jpg");
+  
+    printArray(PFont.list());
+  //load font
+  f = createFont("Georgia", 50);
+  //set the font for drawing
+  textFont(f);
+  // set color of text
+  fill(value);
+  //draw out text
+  text("GOD", 200, 200);
+  text("MAN", 200, 200);
+  text("v", 200, 200);
+  
+  
+} 
+
+void keyPressed() { 
+
+  if ( key == 'b' || key == 'B' ) { 
+    // example of toggle logic 
+    //if (value == 0) { 
+      //value = 255;
+      if (!keyPressed) {
+        
+    //fill(value);
+  //rect(0, height/2, width/2, height/2);  
+
+    //fill(value);
+  //rect( width/2, 0,  width/2, height/2);
+
+    //fill(0, 99, 164, 10);
+  //rect( width/2, 0,  width/2, height/2);
+       
+    } else { 
+      //value = 0;
+      image(b9, 0, height/2, width/2, height/2);
+      //image(b10, width/2, 0, width/2, height/2);
+    }
+  }
+  
+    if ( key == 's' || key == 'S' ) { 
+    // example of toggle logic 
+    //if (value == 0) { 
+      //value = 255;
+      if (!keyPressed) {
+            //fill(0, 0, 0, 10);
+  //rect(0, height/2, width/2, height/2);  
+    fill(0, 99, 164, 10);
+  rect( width/2, 0,  width/2, height/2);
+       
+    } else { 
+      //value = 0;
+      //image(b9, 0, height/2, width/2, height/2);
+      image(b10, width/2, 0, width/2, height/2);
+    }
+}
+    }
+ 
+
+
+void draw() { 
+  
+    //fill(value);
+  //rect(0, height/2, width/2, height/2);  
+    //fill(0, 99, 164);
+  //rect( width/2, 0,  width/2, height/2);
+    //fill(255, 255, 255, value);
+  //rect(width/2, height/10, width/8, height/4);
+  //triangle(width/2, height/3, width/2, height/2, width/2);
+  
+  
+
+
+  
+ 
+ fill(value);
+  text("GOD", 475, height/2);
+ fill(255-value);
+  text("MAN", 100, 385);
+  
+  
+  
+    //if (mousePressed && keyPressed == true){
+      //fill(value);
+      //f = createFont("Georgia", 100);
+      // textFont(f);
+     // text("V", 200, height);
+   // }
+
+    
+  
+   
+  if (!mousePressed) {
+    //noTint();
+    //tint(0, 153, 204,100);
+
+
+//fill(0, 0, 0, 100);
+  //rect(0, height/2, width/2, height/2);  
+
+   // fill(255, 255, 255, 100);
+  //rect( width/2, 0,  width/2, height/2);
+  
+  
+
+    
+    image(b, 0, 0, width/2, height/2);
+    image(b2, width/2, height/2, width/2, height/2);
+  } else {
+
+    int checkCounter = 0; 
+
+    for ( int i = 0; i < height; i+= gSize) {
+
+     //add extra count to make it offset in the next row
+      checkCounter++;
+
+      for ( int j = 0; j < width; j+=(gSize) ) {  
+       
+            //mod operator  %  
+        if ( (checkCounter % 4) == 0 ) {
+          tint(255, 40);
+          image(b, j, i, gSize, gSize);
+          //image(b3, width/2, height/2, 0, height/2);
+           } else {  
+      tint(255, 40);
+            // Apply transparency without changing color
+          image(b2, j, i, gSize, gSize);
+          image(b3, 0, 0, width/2, height/2);
+          image(b4, width/2, height/2, width/2, height/2);
+        }
+       checkCounter++;
+      }
+    }
+  }
+}
+
+
+
+
+void mouseMoved() {
+  value = value + 5;
+  if (value > 255) {
+    value = 0;
+  }
+}

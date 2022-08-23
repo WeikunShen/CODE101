@@ -1,0 +1,73 @@
+String[] names = {"BATMAN"};
+Bat[] bats;
+Drop[] drops = new Drop[200];
+//int i;
+
+int rc1;
+
+
+void setup() {
+  size(1200,800);
+  //background(174, 56, 23);
+
+  // birthing a new instance
+  for (int i = 0; i < drops. length; i++) {
+   drops[i] = new Drop();
+  }
+  
+  bats = new Bat[100]; // Create
+  
+  for (int i = 0;  i < bats.length;i++) {   
+  bats[i] = new Bat(names[int(random(names.length))],random(10));
+    
+  }
+  
+}
+  
+void draw() {
+
+  
+  noStroke();
+ 
+  fill(0, 0, 0);
+  rect(100, 100, 100, 100);
+  fill(174, 56, 23);
+  rect(0,0,width,height);  
+  fill(255, 248, 158);
+  //ellipse(200, 200, 150, 150);
+
+
+ 
+
+  
+    for (int i = 0; i < drops. length; i++) {
+  drops[i].fall();
+  drops[i].show();
+  }
+  
+   noStroke();
+pushMatrix();
+    fill(0, 0, 0);
+  triangle(0, height/2, 0, height/2+150, width/2, height/2+150);
+  rect(0, height/2+150, width/2, height/3+100);
+  triangle(width/2+100, height/2+50, width/2+200, height/2+15, width/2+350, height/2+50);
+  rect(width/2+100, height/2+50, width/3-150, height/2);
+  rect(width/2, height/2+50, width/5, height/2);
+  
+ popMatrix();
+   for (int i = 0;  i < bats.length;i++) {   
+
+      bats[i].move();
+      bats[i].wiggle(random(20));
+      bats[i].update();
+   
+      //bats[i].display(); 
+  }
+  
+  
+
+  for (int i = 0; i < drops. length; i++) {
+  drops[i].fall();
+  drops[i].show();
+  }
+}

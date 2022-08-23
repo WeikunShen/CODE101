@@ -1,0 +1,110 @@
+float x, y, r, r1, g, g1, b, b1, radius;
+int timer;
+float theta;  
+float xpos, ypos;
+PImage image1;
+int pointillize = 16;
+Drop[] drops = new Drop[100];
+int num = 3;
+Spring[] springs = new Spring[num];
+
+ 
+void setup() {
+  
+  springs[0] = new Spring(200, 100, 40, 0.98, 8.0, 0.1, springs, 0); 
+  springs[1] = new Spring(400, 250, 120, 0.95, 9.0, 0.1, springs, 1); 
+  springs[2] = new Spring(180, 500, 200, 0.90, 9.9, 0.1, springs, 2);
+   
+  
+  
+  size(500, 500);
+  for (int i= 0; i < drops. length; i++) {
+  drops[i] = new Drop();
+  }
+  background(0);
+  noStroke();
+  smooth();
+  image1 = loadImage("building.png");
+}
+ 
+void draw() {
+  
+ 
+ 
+  noStroke();
+ for (Spring spring : springs) { 
+    spring.update(); 
+    spring.display();
+  }
+  
+  
+  if (frameCount > 1000){
+  
+  int xpos = int(random(image1.width));
+  int ypos = int(random(image1.height));
+  int loc = xpos + ypos*image1.width;
+  
+ 
+  loadPixels();
+  float r1 = red(image1.pixels[loc]);
+  float g1 = green(image1.pixels[loc]);
+  float b1 = blue(image1.pixels[loc]);
+  noStroke();
+  
+
+  fill(r1,g1,b1,100);
+  ellipse(xpos,ypos,pointillize,pointillize);
+
+  }
+  
+
+if (frameCount > 3500) {
+
+
+ y = frameCount % height;
+ 
+  
+  if (millis() - timer >= 500) {
+
+  x = random(width);
+    timer = millis();
+  }
+ 
+
+  r = noise(frameCount * 0.01) * 255;
+ 
+
+  g = frameCount % 255;
+ 
+
+  b = 255 - noise(1 + frameCount * 0.025) * 255;
+ 
+  
+  radius = noise(frameCount * 0.01) * 100;
+ 
+  color c = color(r, g, b);
+  fill(c);
+  ellipse(x, y, radius/2, radius/2);
+ }
+ 
+ 
+ for (int i = 0; i < drops. length; i++) {
+  drops[i].fall();
+  drops[i].show();
+
+}
+}
+
+
+
+void mousePressed() {
+  for (Spring spring : springs) { 
+    spring.pressed();
+  }
+}
+
+void mouseReleased() {
+  for (Spring spring : springs) { 
+    spring.released();
+  }
+}

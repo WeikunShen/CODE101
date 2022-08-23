@@ -1,0 +1,25 @@
+class Drop {
+   
+   float x = random(0, 1200);
+   float y = random(-200, -100);
+   float yspeed = random(10, 20);
+   color rc1;
+   
+   Drop(){
+   rc1 = color(random(200, 255));
+   }
+   
+ void fall() {
+    y = y + yspeed;
+  
+  if (y > height) {
+    y = random(-200, -100);
+  }
+ }
+  
+  void show() {
+    stroke(rc1);
+    line(x,y,x,y+10);
+    
+  }
+ }
